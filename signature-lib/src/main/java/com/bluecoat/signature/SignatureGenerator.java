@@ -22,7 +22,6 @@ public class SignatureGenerator {
         SecretKeySpec secretKeySpec = new SecretKeySpec(key.getBytes(StandardCharsets.UTF_8), algorithm);
         mac.init(secretKeySpec);
         byte[] hash = mac.doFinal(data.getBytes(StandardCharsets.UTF_8));
-
         return Base64.getEncoder().encodeToString(hash);
     }
 }

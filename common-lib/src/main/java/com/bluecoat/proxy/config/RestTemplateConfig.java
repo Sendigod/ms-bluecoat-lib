@@ -62,11 +62,11 @@ public class RestTemplateConfig {
 
         // 配置代理，如果启用代理
         if (proxyConfig.isProxyEnabled()) {
-            HttpHost proxy = new HttpHost(proxyConfig.getProxyHost(), proxyConfig.getProxyPort());
+            HttpHost proxy = new HttpHost(proxyConfig.getHost(), proxyConfig.getPort());
             BasicCredentialsProvider credentialsProvider = new BasicCredentialsProvider();
             credentialsProvider.setCredentials(
                     new AuthScope(proxy.getHostName(), proxy.getPort()),
-                    new UsernamePasswordCredentials(proxyConfig.getProxyUsername(), proxyConfig.getProxyPassword().toCharArray())
+                    new UsernamePasswordCredentials(proxyConfig.getUsername(), proxyConfig.getPassword().toCharArray())
             );
             httpClientBuilder.setDefaultCredentialsProvider(credentialsProvider).setProxy(proxy);
         }

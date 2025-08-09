@@ -9,11 +9,11 @@ import org.springframework.stereotype.Component;
 @Data
 public class ProxyConfig {
 
-    private String proxyHost;
-    private int proxyPort;
-    private String proxyUsername;
-    private String proxyPassword;
-    private String externalUrl;
+    private String host;
+    private int port;
+    private String username;
+    private String password;
+    private String url;
     private String clientType;
     private boolean proxyEnabled;
     private boolean sslEnabled;

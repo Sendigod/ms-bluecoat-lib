@@ -8,7 +8,7 @@ import org.springframework.context.annotation.Configuration;
 @Data
 public class SignatureConfig {
 
-    @Value("${signature.algorithm:HMAC-SHA256}")
+    @Value("${signature.algorithm:HmacSHA256}")
     private String algorithm;
 
     @Value("${signature.key:}")

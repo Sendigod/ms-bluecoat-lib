@@ -2,24 +2,25 @@ package com.bluecoat.proxy.utils;
 
 
 import com.bluecoat.proxy.config.RestTemplateConfig;
-import com.bluecoat.proxy.feign.ExternalServiceFeignClient;
+import com.bluecoat.proxy.feign.FeignConfig;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Qualifier;
+import lombok.SneakyThrows;
 import org.springframework.stereotype.Component;
 
 @Component
 @RequiredArgsConstructor
-public class HttpClientUtils {
+public class HttpClientUtils{
 
     private final RestTemplateConfig restTemplateConfig;
 
-    private final ExternalServiceFeignClient externalServiceFeignClient;
+    private final FeignConfig feignConfig;
 
-    public Object getHttpClient(String clientType) {
+    @SneakyThrows
+    public Object getHttpClient(String clientType, String url) {
         if ("resttemplate".equalsIgnoreCase(clientType)) {
             return restTemplateConfig.createRestTemplate();
         } else if ("openfeign".equalsIgnoreCase(clientType)) {
-            return externalServiceFeignClient;
+            return feignConfig.createFeignClient(url); // 创建一个自定义的 FeignClient 实例
         }
         throw new IllegalArgumentException("Invalid client type: " + clientType);
     }
